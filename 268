@@ -1,0 +1,25 @@
+268.Missing Number
+class Solution {
+    public int missingNumber(int[] nums) {
+        int n = nums.length;
+        int as = n * (n+1) / 2;
+        for (int i = 0; i< n; i++) {
+            as = as-nums[i];
+        }
+        return as;
+        
+    }
+}
+
+
+class Solution {
+    public int missingNumber(int[] nums) {
+        int n = nums.length;
+        int as = n * (n+1) / 2;
+        for (int num :nums) {
+            as = as-num;
+        }
+        return as;
+        
+    }
+}
