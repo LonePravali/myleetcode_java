@@ -1,0 +1,37 @@
+221.Maximal Square
+class Solution {
+    public int maximalSquare(char[][] matrix) {
+        int nr = matrix.length;
+        int nc = matrix[0].length;
+        int[][] dp = new int[nr][nc];
+        int mx = 0;
+
+
+        // row 0
+        for (int j = 0; j < nc ; j++) {
+            if(matrix[0][j] == '1') {
+                dp[0][j] = 1;
+                mx = 1;
+            }
+        }
+        // col 0  
+        for (int i = 0; i < nr; i++) {
+            if( matrix[i][0] == '1') {
+                dp[i][0] = 1;
+                mx = 1;
+            }
+        }
+        for(int i = 1; i < nr; i++) {
+            for (int j = 1; j< nc; j++) {
+                if (matrix[i][j] == '1') {
+                    int left = dp[i][j-1];
+                    int top = dp[i-1][j];
+                    int dia = dp[i-1][j-1];
+                    dp[i][j] = Math.min(Math.min(left, dia), top) + 1;
+                    mx = Math.max(mx, dp[i][j]);
+                }
+            }
+        }
+        return mx*mx;
+    }
+}
